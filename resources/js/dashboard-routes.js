@@ -39,7 +39,7 @@ const router = new VueRouter({
         },
     },
     {
-        name: "Product - Add",
+        name: "Product - Create",
         path: "/dashboard/product/add",
         component: ProductAdd,
         meta: {
