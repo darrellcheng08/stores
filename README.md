@@ -35,4 +35,5 @@ Open your browser and type localhost:8000 then enter
 **Step 9:** Default Admin Credentials
 
 Username: admin@gmail.com
+
 Password: password
