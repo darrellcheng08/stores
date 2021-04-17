@@ -13,7 +13,7 @@ php artisan key:generate
 php artisan storage:link
 ```
 
-**Step 4:** Rename the .env.example file to .env, and configure the appropriate database credentials
+**Step 4:** Rename the ```.env.example``` file to ```.env```, and configure the appropriate database credentials
 
 **Step 5:** After configuring the .env file, run the following command:
 ```
