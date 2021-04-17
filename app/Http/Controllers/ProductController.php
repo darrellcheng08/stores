@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductImages;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Storage;
 
 class ProductController extends Controller
 {
@@ -56,10 +58,10 @@ class ProductController extends Controller
                 ProductImages::where('product_id', $product->id)->forceDelete();
                 // create product images
                 foreach ($request->images as $image) {
-                    $url = $this->uploadImageBase64($request->images, 'product_images');
+                    $images_path = Storage::disk('public')->put('product-images', $image);
                     $product_image = new ProductImages();
                     $product_image->product_id = $product->id;
-                    $product_image->image_url = $url;
+                    $product_image->image_url = "/storage/".$images_path;
                     $product_image->save();
                 }
             }
@@ -92,7 +94,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return $product;
+        return $product->load('images');
     }
 
     /**
@@ -115,6 +117,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        return $request->all();
         return $this->create($request, $product);
     }
 
@@ -128,16 +131,5 @@ class ProductController extends Controller
     {
         $product->delete();
         return 'success';
-    }
-    
-    function uploadImageBase64($content, $path, $name = null)
-    {
-        $image = Image::make(base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $content)));
-        $ext = explode("/", $image->mime)[1];
-        //$name = $name . '_' . time();
-        $name = empty($name) ? time() . ".$ext" : $name;
-        Storage::put("public/$path/$name", $image->stream());
-
-        return "/storage/$path/$name";
     }
 }

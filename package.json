@@ -27,7 +27,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@nagoos/vue-image-picker": "^1.0.4",
         "regenerator-runtime": "^0.13.7",
         "vee-validate": "^2.1.7",
         "vue": "^2.6.12",

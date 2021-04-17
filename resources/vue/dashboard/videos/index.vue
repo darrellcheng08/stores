@@ -60,6 +60,12 @@ export default {
         form: {}
     }),
 
+    created() {
+        if (this.$cookie.get("active_video_url")) {
+            this.video_url = this.$cookie.get("active_video_url");
+        }
+    },
+
     methods: {
         pickVideo() {
             this.$refs.video.click();
@@ -97,15 +103,18 @@ export default {
 
         async upload(file) {
             let vm = this;
+            console.log(file);
             const form_data = new FormData();
             form_data.append("file", file);
             const { data } = await axios.post("/video/save", form_data);
             if (data[0] != "error") {
+                vm.show_loading = false;
+                vm.$cookie.set("active_video_url", data, 1); // expired 1 day
                 return data;
             } else {
                 vm.errorText = data[1];
+                vm.show_loading = false;
             }
-            vm.show_loading = false;
         }
     }
 };

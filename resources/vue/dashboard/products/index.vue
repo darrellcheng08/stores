@@ -114,11 +114,9 @@
 
 <script>
 import loading from "@components/Loading.vue";
-import contextMenu from "@components/ContextMenu.vue";
-import contextMenuItem from "@components/ContextMenuItem.vue";
 
 export default {
-    components: { loading, contextMenu, contextMenuItem },
+    components: { loading },
     data() {
         return {
             headers: [

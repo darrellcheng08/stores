@@ -16,6 +16,10 @@ Vue.use(ToastSnackBar);
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
+try {
+  window.$ = window.jQuery = require("jquery");
+} catch (e) {}
+
 window.axios = _axios.create({
   baseURL: window.location.origin + "/api",
   headers: {

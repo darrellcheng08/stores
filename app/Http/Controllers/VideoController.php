@@ -4,29 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class VideoController extends Controller
 {
     public function save(Request $request) {
-        // $file = $request->file('file');
-        // $getExtension = $file->getClientOriginalName();
-        // $getExtension = explode('.', $getExtension);
-        // $getExtension = $getExtension[count($getExtension) - 1];
-        // $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . $getExtension;
-        // $file->storeAs('public/videos', $filename);
-
-        // $path = '/storage/videos/' . $filename;
-
-        ini_set('upload_max_filesize', '100M');
-        try {
-            
+        try 
+        {
             $file = $request->file('file');
-            $filename = $file->getClientOriginalName();
+            $getExtension = $file->getClientOriginalName();
+            $getExtension = explode('.', $getExtension);
+            $getExtension = $getExtension[count($getExtension) - 1];
+            $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . $getExtension;
             $path = storage_path().'/app/public/videos';
-            
-            return $file->move($path, $filename);
+            $file->move($path, $filename);
+            return "/storage/videos/" . $filename;
             
         } catch (\Exception $e) {
+            Log::error($e);
             return ['error', $e->getMessage()];
         }
     }
