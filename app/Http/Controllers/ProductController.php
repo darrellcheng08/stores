@@ -117,7 +117,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        return $request->all();
         return $this->create($request, $product);
     }
 
