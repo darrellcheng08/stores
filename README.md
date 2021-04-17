@@ -25,7 +25,7 @@ php artisan db:seed
 **Step 7:** To run the project on the server follow the commands below:
 ```
 php artisan serve
-npm run watch-poll or npm run hot
+npm run watch-poll
 ```
 **Step 8:** Access the website:
 Open your browser and type localhost:8000 then enter
