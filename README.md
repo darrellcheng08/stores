@@ -2,10 +2,10 @@
 
 # Step 1: Clone the project repository
 # Step 2:  Install the packages of laravel and vue.js using the commands below:
-
+```
 npm install
 composer install
-
+```
 Step 3: 
 php artisan key:generate
 php artisan storage:link
