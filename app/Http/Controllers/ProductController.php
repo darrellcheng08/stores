@@ -81,7 +81,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new  Product();
+        $product = new Product();
 
         return $this->create($request, $product);
     }
@@ -115,8 +115,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
+        $product = Product::find($request->id);
         return $this->create($request, $product);
     }
 

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/categories', 'CategoryController@index');
 
     Route::post('/video/save', 'VideoController@save');
+    Route::post('/product/update', 'ProductController@update');
 
     Route::apiResources([
         'users' => 'UserController',

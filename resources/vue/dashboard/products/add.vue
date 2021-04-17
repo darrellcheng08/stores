@@ -80,32 +80,26 @@
             <v-col cols="6" xs="12" md="8" sm="12" lg="6">
               <v-card class="mb-3">
                 <v-card-text class="pa-3">
+                  <v-alert dismissible :value="true" type="primary">
+                    Note: Click the box below to upload an image.
+                  </v-alert>
                   <v-form data-vv-scope="product-image" class="pb-4">
                     <v-img
                       @click="pickFile"
                       :src="placeholderImage"
                       aspect-ratio="2.5"
-                      class="dark imagePick"
                       contain
-                      style="border-radius: 5px;"
                     >
-                      <v-layout
-                        row
-                        wrap
-                        fill-height
-                        class="lightbox white--text"
-                        v-if="!placeholderImage"
-                      >
-                        <v-flex class="text-lg-center" align-self-center dark>
-                          <div class="subheading">
-                            <v-icon x-large color="white"
-                              >mdi mdi-image-plus</v-icon
-                            >
-                          </div>
-                          <div class="subheading">Upload an image.</div>
-                        </v-flex>
-                      </v-layout>
                     </v-img>
+
+                    <v-row justify="center">
+                      <v-col class="mt-3" cols="3" xs="3" md="3" sm="3" lg="3">
+                        <v-btn align="center" color="info" @click="addImage">
+                          Add Image
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+
                     <input
                       type="file"
                       style="display: none"
@@ -113,6 +107,7 @@
                       ref="image"
                       accept="image/*"
                     />
+
                     <div class="py-3">
                       <strong>Images file to be save:</strong>
                       <v-row>
@@ -134,9 +129,6 @@
                   </v-form>
 
                   <!-- ACTIONS -->
-                  <v-btn color="info" @click="addImage">
-                    Add Image
-                  </v-btn>
                   <v-btn color="primary" @click="validateStep(3)">
                     Next
                   </v-btn>
@@ -239,7 +231,7 @@ export default {
         vm.image_file = "";
         vm.placeholderImage = "/img/default-image.png";
       } else {
-        vm.$toast("Please select a file.", "error");
+        vm.$toast("Please select an image file.", "error");
       }
     },
 
@@ -253,7 +245,7 @@ export default {
       }
       if (files[0].type.substr(0, 5) != "image") {
         vm.form.file = null;
-        this.errorText = "File must be an image";
+        vm.errorText = "File must be an image";
         return;
       }
 
@@ -264,6 +256,7 @@ export default {
       reader.readAsDataURL(files[0]);
       vm.placeholderImage = URL.createObjectURL(files[0]);
       vm.image_file = files[0];
+      vm.errorText = "";
     },
 
     pickFile() {
