@@ -200,7 +200,7 @@ export default {
     form: {},
     categories: [],
     images: [],
-    image_file: {},
+    image_file: "",
     image_files: [],
     show_loading: false,
   }),
@@ -330,6 +330,9 @@ export default {
           } else {
             next();
           }
+        }
+        if (vm.image_file) {
+          vm.addImage();
         }
         vm.$toast("Product image file is required", "warning");
       } else if (vm.step == 3) {
