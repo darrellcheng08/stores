@@ -34,7 +34,6 @@
         "vue-route-generator": "^1.0.0",
         "vue-router": "^3.5.1",
         "vuetify": "^2.4.9",
-        "@tweenjs/tween.js": "17.4.0",
         "lodash.differenceby": "4.8.0"
     }
 }
