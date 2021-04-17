@@ -7,7 +7,7 @@
 npm install
 composer install
 ```
-**Step 3:** 
+**Step 3:** Run the following command to generate an application key and link the storage folder to public folder:
 ```
 php artisan key:generate
 php artisan storage:link
