@@ -311,8 +311,6 @@ export default {
             form_data.append(`images[${key}]`, image);
           });
         }
-        console.log(form_data);
-        return;
         const { data } = await axios.put(
           `/products/${vm.$route.params.id}`,
           form_data
