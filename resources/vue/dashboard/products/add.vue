@@ -80,7 +80,7 @@
             <v-col cols="6" xs="12" md="8" sm="12" lg="6">
               <v-card class="mb-3">
                 <v-card-text class="pa-3">
-                  <v-alert dismissible :value="true" type="primary">
+                  <v-alert dismissible :value="true" type="info">
                     Note: Click the box below to upload an image.
                   </v-alert>
                   <v-form data-vv-scope="product-image" class="pb-4">
