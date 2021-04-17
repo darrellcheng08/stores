@@ -309,7 +309,6 @@ export default {
         const { data } = await axios.post(`/product/update`, formData);
         if (data[0] != "error") {
           vm.$toast("Product successfully added!", "success");
-          // vm.eventBus.$emit("refresh_ssid");
           vm.$router.push("/dashboard/products");
         } else {
           vm.$toast(data[1], "error");
