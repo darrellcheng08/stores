@@ -1,7 +1,7 @@
 # Installation
 
-# Step 1: Clone the project repository
-# Step 2:  Install the packages of laravel and vue.js using the commands below:
+** Step 1: ** Clone the project repository
+** Step 2: **  Install the packages of laravel and vue.js using the commands below:
 ```
 npm install
 composer install
