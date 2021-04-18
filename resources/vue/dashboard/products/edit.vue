@@ -367,6 +367,7 @@ export default {
         if (vm.image_file) {
           vm.addImage();
         }
+        vm.$toast("Product image file is required", "warning");
       } else if (vm.step == 3) {
         if (await vm.valid3) {
           next();
