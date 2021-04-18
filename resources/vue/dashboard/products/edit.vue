@@ -328,7 +328,7 @@ export default {
         }
         const { data } = await axios.post(`/product/update`, formData);
         if (data[0] != "error") {
-          vm.$toast("Product successfully added!", "success");
+          vm.$toast("Product successfully updated.", "success");
           vm.$router.push("/dashboard/products");
         } else {
           vm.$toast(data[1], "error");
@@ -363,6 +363,9 @@ export default {
           } else {
             next();
           }
+        }
+        if (vm.image_file) {
+          vm.addImage();
         }
       } else if (vm.step == 3) {
         if (await vm.valid3) {

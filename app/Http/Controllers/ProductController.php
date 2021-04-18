@@ -6,6 +6,7 @@ use App\Product;
 use App\ProductImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 use Storage;
 
 class ProductController extends Controller
@@ -54,6 +55,14 @@ class ProductController extends Controller
             $product->save();
 
             if($request->delete_images) {
+                $images = ProductImages::whereIn('id', $request->delete_images)->get();
+                foreach($images as $image) {
+                    $path_parts = pathinfo($image->image_url);
+                    $image_path = storage_path('app/public/product-images/').$path_parts['basename'];
+                    if(File::exists($image_path)) {
+                        File::delete($image_path);
+                    }
+                }
                 ProductImages::whereIn('id', $request->delete_images)->delete();
             }
 
