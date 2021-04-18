@@ -23,31 +23,31 @@ php artisan storage:link
 
 Go to project-folder/Softdeletes then copy SoftDeletes.php and SoftDeletingScope.php file to vendor/laravel/framework/src/Illuminate/Database/Eloquent/
 
-**Step 5:** After configuring the .env file, run the following command:
+**Step 6:** After configuring the .env file, run the following command:
 
 ```
 php artisan config:cache
 ```
 
-**Step 6:** Create a database, then insert default data using the commands below:
+**Step 7:** Create a database, then insert default data using the commands below:
 
 ```
 php artisan migrate
 php artisan db:seed
 ```
 
-**Step 7:** To run the project on the server follow the commands below:
+**Step 8:** To run the project on the server follow the commands below:
 
 ```
 php artisan serve
 npm run watch-poll
 ```
 
-**Step 8:** Access the website:
+**Step 9:** Access the website:
 
 Open your browser and type **localhost:8000** then enter
 
-**Step 9:** Default Admin Credentials
+**Step 10:** Default Admin Credentials
 
 Username: admin@gmail.com
 
