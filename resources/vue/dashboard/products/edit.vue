@@ -118,13 +118,23 @@
                           class="d-flex child-flex"
                           cols="4"
                         >
-                          <v-img
-                            :src="image"
-                            aspect-ratio="1"
-                            class="grey lighten-2"
-                          >
-                          </v-img> </v-col
-                      ></v-row>
+                          <v-card>
+                            <v-img
+                              :src="image.image_url"
+                              aspect-ratio="1"
+                              class="grey lighten-2"
+                            >
+                            </v-img>
+
+                            <v-card-actions>
+                              <v-spacer></v-spacer>
+                              <v-btn @click="removeImage(key, image.id)" icon>
+                                <v-icon>mdi-delete</v-icon>
+                              </v-btn>
+                            </v-card-actions>
+                          </v-card>
+                        </v-col></v-row
+                      >
                     </div>
                     <span class="error--text">{{ errorText }}</span>
                   </v-form>
@@ -195,6 +205,7 @@ export default {
     images: [],
     image_file: "",
     image_files: [],
+    delete_images: [],
     show_loading: false,
   }),
 
@@ -231,9 +242,7 @@ export default {
         new Date(vm.form.date_time).getHours() +
         ":" +
         new Date(vm.form.date_time).getMinutes();
-      for (let index = 0; index < vm.form.images.length; index++) {
-        vm.images.push(vm.form.images[index].image_url);
-      }
+      vm.images = vm.form.images;
     },
 
     async getCategory() {
@@ -245,12 +254,18 @@ export default {
       let vm = this;
       if (vm.image_file) {
         vm.image_files.push(vm.image_file);
-        vm.images.push(vm.placeholderImage);
+        vm.images.push({ image_url: vm.placeholderImage });
         vm.image_file = "";
         vm.placeholderImage = "/img/default-image.png";
       } else {
         vm.$toast("Please select an image file.", "error");
       }
+    },
+
+    removeImage(index, id) {
+      let vm = this;
+      vm.delete_images.push(id);
+      vm.images.splice(index, 1);
     },
 
     async onFilePicked(e) {
@@ -301,6 +316,11 @@ export default {
         formData.append("description", vm.form.description);
         formData.append("category_id", vm.form.category_id);
         formData.append("date_time", vm.form.date_time);
+        if (vm.delete_images) {
+          $.each(vm.delete_images, function(key, id) {
+            formData.append(`delete_images[${key}]`, id);
+          });
+        }
         if (vm.image_files) {
           $.each(vm.image_files, function(key, image) {
             formData.append(`images[${key}]`, image);

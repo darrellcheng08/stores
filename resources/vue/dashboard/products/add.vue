@@ -117,13 +117,22 @@
                           class="d-flex child-flex"
                           cols="4"
                         >
-                          <v-img
-                            :src="image"
-                            aspect-ratio="1"
-                            class="grey lighten-2"
-                          >
-                          </v-img> </v-col
-                      ></v-row>
+                          <v-card>
+                            <v-img
+                              :src="image"
+                              aspect-ratio="1"
+                              class="grey lighten-2"
+                            >
+                            </v-img>
+                            <v-card-actions>
+                              <v-spacer></v-spacer>
+                              <v-btn @click="removeImage(key)" icon>
+                                <v-icon>mdi-delete</v-icon>
+                              </v-btn>
+                            </v-card-actions>
+                          </v-card>
+                        </v-col></v-row
+                      >
                     </div>
                     <span class="error--text">{{ errorText }}</span>
                   </v-form>
@@ -233,6 +242,12 @@ export default {
       } else {
         vm.$toast("Please select an image file.", "error");
       }
+    },
+
+    removeImage(index, id) {
+      let vm = this;
+      vm.images.splice(index, 1);
+      vm.image_files.splice(index, 1);
     },
 
     async onFilePicked(e) {

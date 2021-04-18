@@ -53,9 +53,11 @@ class ProductController extends Controller
             $product->date_time = $request->date_time;
             $product->save();
 
+            if($request->delete_images) {
+                ProductImages::whereIn('id', $request->delete_images)->delete();
+            }
+
             if($request->images) {
-                // delete image
-                ProductImages::where('product_id', $product->id)->forceDelete();
                 // create product images
                 foreach ($request->images as $image) {
                     $images_path = Storage::disk('public')->put('product-images', $image);
