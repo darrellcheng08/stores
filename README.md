@@ -19,6 +19,10 @@ php artisan storage:link
 
 **Step 4:** Rename the `.env.example` file to `.env`, and configure the appropriate database credentials
 
+**Step 5:** Add Softdelete files to vendor, follow the instruction below
+
+Go to project-folder/app then copy SoftDeletes.php and SoftDeletingScope.php file to project-folder/vendor/laravel/framework/src/Illuminate/Database/Eloquent/
+
 **Step 5:** After configuring the .env file, run the following command:
 
 ```
